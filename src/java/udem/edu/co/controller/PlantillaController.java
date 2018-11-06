@@ -12,14 +12,21 @@ public class PlantillaController implements Serializable{
     
     public void verificarSesion(){
         try {
-            Users us = (Users) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-            System.out.println(us.getIdrol().getIdrol());
+            Object us =  FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+            //System.out.println(us.getIdrol().getIdrol());
             if (us == null) {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("permisos.xhtml");
+                System.out.println("no tiene nada");
+              FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            }else{
+                FacesContext.getCurrentInstance().getExternalContext().redirect("viewTables.xhtml");
             }
             
         } catch (Exception e) {
-            //error
+           
+            System.out.println("Entre el catch");
+           
         }
+        //System.out.println("Voy a cambiar de página");
+        //return "permisos.xhtml";
     }
 }
